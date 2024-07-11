@@ -1,6 +1,6 @@
 import React from "react";
 import { callservice } from "../utils/Services";
-
+import ProductCard from "./product_card";
 
 export default class Products extends React.Component{
     
@@ -10,7 +10,6 @@ export default class Products extends React.Component{
             products: []
         }
         console.log("constructor")
-
     }
 
     componentDidMount(){
@@ -39,7 +38,17 @@ export default class Products extends React.Component{
         console.log("render")
         return(
             <div>
-                {this.state.products.length > 0 ? <div>Products fetched</div> : <div>Fetching Products...</div>}
+                {this.state.products.length > 0 ? <div style={{display:"flex",flexDirection:"row",flexWrap:"wrap",justifyContent:"center"}}>
+
+                {this.state.products.map((prod)=>{
+                    return(
+                        <ProductCard product={prod} id={prod.id}  />
+                    )
+                })}
+                    
+                    
+                    
+                </div> : <div>Fetching Products...</div>}
             
             </div>
         )

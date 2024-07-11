@@ -1,0 +1,36 @@
+.place_card_action {
+                
+}
+
+.place_card_action button{
+    box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    color: rgb(255, 50, 105);
+    border: none;
+    border-radius: 4px;
+    outline: 1px solid rgb(255, 50, 105);
+    outline-offset: 2px;
+    transition: .4s;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.place_card_action button:hover{
+    outline-offset: 4px;
+}
+
+.count-btns{
+width: 100%;
+display: flex;
+outline: 1px solid rgb(255, 50, 105);
+    outline-offset: 2px;
+}
+.count-btns button{
+margin:0px;
+border:none;
+background-color: rgb(255, 50, 105,0.1);
+cursor: pointer;
+}
+

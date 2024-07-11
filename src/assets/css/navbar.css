@@ -1,0 +1,133 @@
+.header_container {
+    width:100%;
+    background: linear-gradient(180deg, #74b4fc, #cbe2fe);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #d1c0c0;
+    /* color: #000000; */
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index:1;
+    
+    }
+    
+    .header_container_heading {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 5px;
+    height: 86px;
+    
+    }
+    
+    
+    
+    .heading img{
+    width: 130px;
+    color:#950edb;
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:700;
+    font-style: normal;
+    padding-left: 40px;
+    cursor: pointer;
+    
+    
+    }
+    
+    .header_location{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    }
+    
+    .header_location_details span{
+    font-size: 16px;
+    font-weight: 700;
+    }
+    
+    .header_location_icon{
+    color:#950edb;
+    }
+    
+    .header_location_details b{
+    font-size: 16px;
+    }
+    
+    .header_search{
+    display: flex;
+    align-items: center;
+    flex: 1;
+    }
+    
+    .header_search_icon{
+    width: 50px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 5px 0 0 5px;
+    }
+    
+    
+    .header_search_textbox{
+    width: 100%;
+    }
+    
+    .header_search_textbox input{
+    height: 40px;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    font-size: 16px;
+    border-radius: 0 5px 5px 0;
+    
+    }
+    
+    .header_login_cart{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    }
+    
+    .header_cart span:nth-child(3){
+    color: white;
+    width: 20px;
+    font-size: 16px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #950edb;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    
+    }
+    
+    
+    
+    
+    
+    .header_login,
+    .header_cart {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    width: 70px;
+    gap: 5px;
+    }
+    
+    .header_login:hover,
+    .header_cart:hover,
+    .header_location:hover{
+    outline: 1px solid #181818;
+    border-radius:3px ;
+    cursor: pointer;
+    }

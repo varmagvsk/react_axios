@@ -31,6 +31,12 @@ export const callservice = (method,inpobj,svcname) => {
             xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhttp.send(reqData)
             */
+
+            /*
+                1. XMLHTTPRequest - AJAX(Jquery - JS library) - inbuilt
+                2. fetch API - inbuilt - es6(2015)
+                3. axios - library(package)
+            */
            
             axios.post(fullURL,inpobj,{
                 headers: {
