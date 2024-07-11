@@ -9,20 +9,29 @@ export default class CartBtn extends React.Component {
     };
   }
 
+  inc=()=>{
+    this.setState({count:this.state.count+1})
+  }
+
+  dec=()=>{
+    this.setState({count:this.state.count-1})
+
+  }
+
   render() {
     return (
       <div>
         {this.state.count <= 0 ? (
           <div class="place_card_action">
-            <button class="cart-btn">Add to Cart</button>
+            <button onClick={()=>this.setState({count:1})} class="cart-btn">Add to Cart</button>
           </div>
         ) : (
           <div class="count-btns">
-            <button class="dec-btn" style="width:20%">
+            <button onClick={this.dec} class="dec-btn" style={{width:"20%"}}>
               -
             </button>
-            <div style="width:60%;text-align:center">${this.state.count}</div>
-            <button class="inc-btn" style="width:20%">
+            <div style={{width:"60%",textAlign:"center"}} >{this.state.count}</div>
+            <button onClick={this.inc} class="inc-btn" style={{width:"20%"}}>
               +
             </button>
           </div>
