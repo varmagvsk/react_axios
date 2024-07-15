@@ -8,22 +8,26 @@ export default class ProductCard extends React.Component{
         this.state = {
 
         }
-        console.log(this.props)
+        //console.log(this.props)
     }
+    
+    // componentDidUpdate(){
+    //     console.log("prodctcard updated")
+    // }
 
 
     render(){
         let data = this.props.product
         return(
-            <div class="place_card">
-                <div class="place_card_image">
+            <div className="place_card">
+                <div className="place_card_image">
                 <img src={data.prdimg} />
                 </div>
-                <div class="place_card_content">
+                <div className="place_card_content">
                     <span>{data.langpref} - {data.proditems[0].size}</span>
                     <p>₹{data.proditems[0].price}</p>
                 </div>
-                <CartBtn />
+                <CartBtn data={data}/>
                 {/*<cart-btn style="" selected="${this.data.selected}" prdid="${this.data.id}" cartcount="${this.data.cartcount}"></cart-btn>*/}
             </div>
         )

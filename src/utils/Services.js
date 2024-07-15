@@ -43,7 +43,7 @@ export const callservice = (method,inpobj,svcname) => {
                   'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).then((response)=>{
-                console.log('axiosRes',response)
+                //console.log('axiosRes',response)
                 resolve(response.data)
             }).catch((err)=>{
                 reject(err)
