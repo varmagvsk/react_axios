@@ -7,7 +7,7 @@ import Global from "../utils/Global";
 export default class CartBtn extends React.Component {
   
   constructor(props) {
-    console.log("cartbtn constructed")
+    //console.log("cartbtn constructed")
     super(props);
     this.state = {
       count: this.props.data?.selcount,
@@ -18,8 +18,8 @@ export default class CartBtn extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log("cardbtn updated")
-    console.log(this.props.data)
+    //console.log("cardbtn updated")
+    //console.log(this.props.data)
     if(this.props.data.selected && this.state.count <=0){
       this.setState({count:this.props.data.selcount,ordid:this.props.data?.ordid,orditid:this.props.data?.orditid})
     }
@@ -53,7 +53,7 @@ export default class CartBtn extends React.Component {
       orditid: this.state.orditid,
       totprice: (ordquan * parseFloat(productData.proditems[0].price)).toFixed(2),
       addons: JSON.stringify([]),
-      hsn: 999,
+      hsn: 1234,
     }
 
     callservice('post',inpobj,'/addtocart')

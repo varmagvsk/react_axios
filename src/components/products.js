@@ -10,11 +10,11 @@ export default class Products extends React.Component {
     this.state = {
       products: [],
     };
-    console.log("constructor");
+    //console.log("constructor");
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
+    //console.log("componentDidMount");
     this.getProducts();
   }
 
@@ -35,8 +35,10 @@ export default class Products extends React.Component {
             res.prodlist[i]['ordid'] = '';
             res.prodlist[i]['orditid'] = '';
         }
-        console.log(res.prodlist)
-        this.setState({ products: res.prodlist }, () => this.getCart());
+        //console.log(res.prodlist)
+        this.state.products = res.prodlist
+        this.getCart();
+        //this.setState({ products: res.prodlist }, () => {/*this.getCart()*/});
         // console.log("products",this.state.products)
       })
       .catch((err) => {
@@ -53,7 +55,7 @@ export default class Products extends React.Component {
 
     callservice("post", inpobj, "/getnewcart").then((res) => {
       if (res.code == "999") {
-        console.log(res)
+        //console.log(res)
         Global.getNavRef().setState({ cartcount: res.cartcount });
         for (let i = 0; i < this.state.products.length; i++) {
           for (let j = 0; j < res.orditlist.length; j++) {
@@ -69,16 +71,18 @@ export default class Products extends React.Component {
             }
           }
         }
-        if (res.orditlist.length > 0) {
-            console.log("sencond")
-          this.setState({ products: this.state.products });
-        }
+        this.setState({ products: this.state.products });
+      }else if(res.code == '999'){
+        this.setState({ products: this.state.products });
+      }else{
+        this.setState({ products: this.state.products });
+
       }
     });
   };
 
   render() {
-    console.log("prodrender");
+    //console.log("prodrender");
     return (
       <div>
         {this.state.products.length > 0 ? (
