@@ -17,4 +17,11 @@ export default class Global{
     static setNavRef=(ref)=>{
         this.navRef = ref;
     }
+
+    static appTheme = {
+        colors:{
+            primaryColor: "#ff3269",
+            btnBgColor: "#ff32691a",
+        }
+    }
 }

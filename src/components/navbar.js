@@ -76,7 +76,7 @@ export default class NavBar extends React.Component {
             </svg>
             <span>Profile</span>
           </div>
-          <div className="header_cart">
+          <div onClick={()=>this.props.openDrawer()} className="header_cart">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
