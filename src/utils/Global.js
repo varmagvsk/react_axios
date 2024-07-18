@@ -22,6 +22,10 @@ export default class Global{
         colors:{
             primaryColor: "#ff3269",
             btnBgColor: "#ff32691a",
+        },
+        fonts:{
+            primartFont: 'Roboto',
+            secondartFont: 'sans-serif'
         }
     }
 }
