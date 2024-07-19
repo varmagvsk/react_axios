@@ -17,6 +17,7 @@ export default class ProductCard extends React.Component{
 
 
     render(){
+        //console.log("product rendered")
         let data = this.props.product
         return(
             <div className="place_card">

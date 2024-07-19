@@ -3,6 +3,7 @@ import "../assets/css/cartbtn.css";
 import { CUST_ID, ORG_ID } from "../utils/Constants";
 import { callservice } from "../utils/Services";
 import Global from "../utils/Global";
+import { Button } from "antd";
 
 export default class CartBtn extends React.Component {
   
@@ -10,19 +11,22 @@ export default class CartBtn extends React.Component {
     //console.log("cartbtn constructed")
     super(props);
     this.state = {
-      count: this.props.data?.selcount,
-      ordid: this.props.data?.ordid,
-      orditid: this.props.data?.orditid
+      count: this.props.data.selcount,
+      ordid: this.props.data.ordid,
+      orditid: this.props.data.orditid,
+      countZeroUpdated: false,
+      loading:false,
+      //afterRenderProps: {...this.props.data},
     };
     //console.log("cartbtn constructed",this.state.count)
   }
 
   componentDidUpdate(prevProps){
-    //console.log("cardbtn updated")
-    //console.log(this.props.data)
-    if(this.props.data.selected && this.state.count <=0){
+    if(this.props.data.selected && this.state.count <=0 && !this.state.countZeroUpdated){
       this.setState({count:this.props.data.selcount,ordid:this.props.data?.ordid,orditid:this.props.data?.orditid})
     }
+
+    
   }
 
   inc=()=>{
@@ -36,6 +40,7 @@ export default class CartBtn extends React.Component {
 
 
   addToCart=(type='add')=>{
+    this.setState({loading:true})
     let ordquan = type == 'add' ? parseInt(this.state.count) + 1 : parseInt(this.state.count) - 1
     let productData = this.props.data
     let inpobj = {
@@ -59,19 +64,24 @@ export default class CartBtn extends React.Component {
     callservice('post',inpobj,'/addtocart')
     .then((res)=>{
       if(res.code == "999"){
-        this.setState({count:res.itemcount,ordid:res.cartobj.ordid,orditid:res.cartobj.orditid})
+        if(res.itemcount == 0){
+          this.setState({count:0,countZeroUpdated:true})
+        }else{
+          this.setState({count:res.itemcount,ordid:res.cartobj.ordid,orditid:res.cartobj.orditid,countZeroUpdated:false})
+        }
         Global.getNavRef().setState({cartcount:res.cartcount})
       }
     })
+    .catch(err=>console.log(err))
+    .finally(()=>this.setState({loading:false}))
   }
 
   render() {
-    console.log("cardbtn rendered")
     return (
       <div>
-        {this.state.count <= 0 ? (
+        {(this.state.count <= 0) ? (
           <div className="place_card_action">
-            <button onClick={()=>this.addToCart()} className="cart-btn">Add to Cart</button>
+            <Button loading={this.state.loading} onClick={()=>this.addToCart()} className="cart-btn">{this.state.loading ? "Adding.." : 'Add to Cart'}</Button>
           </div>
         ) : (
           <div className="count-btns">

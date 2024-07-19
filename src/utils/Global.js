@@ -1,6 +1,7 @@
 export default class Global{
     static homeRef = null;
     static navRef = null;
+    static productsRef = null;
 
     static getHomeRef=()=>{
         return this.homeRef;
@@ -16,6 +17,14 @@ export default class Global{
 
     static setNavRef=(ref)=>{
         this.navRef = ref;
+    }
+
+    static getProductsRef=()=>{
+        return this.productsRef;
+    }
+
+    static setProductsRef=(ref)=>{
+        this.productsRef = ref;
     }
 
     static appTheme = {

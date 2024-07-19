@@ -113,6 +113,49 @@ class Cart extends React.Component {
     }).finally(()=>this.props.onClose())
   }
 
+  addToCart=(item,type='inc')=>{
+    let ordquan = type=='inc' ? item.itemcount + 1 : item.itemcount - 1;
+    let inpobj = {
+      orgid: ORG_ID,
+      custid: CUST_ID,
+      prdid: item.prdid,
+      prdimg: item.prdimg,
+      prditid: item.prditid,
+      price: item.price,
+      onpromo: item.onpromo,
+      promoprice: item.promoprice,
+      size: item.size,
+      ordquan: ordquan,
+      ordid: this.state.cartobj.ordid,
+      orditid: item.orditid,
+      totprice: (ordquan * parseFloat(item.price)).toFixed(2),
+      addons: JSON.stringify([]),
+      hsn: 1234,
+    }
+    callservice('post',inpobj,'/addtocart')
+    .then((res)=>{
+      if(res.code=='999'){
+        this.getCart();
+        //Global.getProductsRef().getCart();
+        /*
+        for(let i=0;i<this.state.orditlist.length;i++){
+          if(res.cartobj.orditid == this.state.orditlist[i].orditid){
+            let keys = Object.keys(res.cartobj);
+            for(let j=0;j<keys.length;j++){
+              console.log(res.cartobj[keys[j]])
+              this.state.orditlist[i][keys[j]] = res.cartobj[keys[j]]
+            }
+            this.state.orditlist[i]['itemcount'] = res.itemcount
+            //console.log(this.state.orditlist[i])
+            break;
+          }
+        }
+        this.setState({orditlist:this.state.orditlist})
+        */
+      }
+    })
+  }
+
   render() {
     return (
       <Drawer
@@ -176,6 +219,9 @@ class Cart extends React.Component {
               <div>
                 <h2>Cart Items</h2>
                 {this.state.orditlist.map((item, index) => {
+                  if(item.itemcount == 0){
+                    return;
+                  }
                   return (
                     <div
                       key={index}
@@ -223,9 +269,9 @@ class Cart extends React.Component {
                             alignItems: "center",
                           }}
                         >
-                          <button style={Styles.btn}>-</button>
+                          <button onClick={()=>this.addToCart(item,'dec')} style={Styles.btn}>-</button>
                           <span style={{}}>{item.itemcount}</span>
-                          <button style={Styles.btn}>+</button>
+                          <button onClick={()=>this.addToCart(item)} style={Styles.btn}>+</button>
                         </div>
                         <div
                           style={{

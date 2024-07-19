@@ -33,6 +33,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log("App rendered")
     return (
       <div>
         <NavBar ref={this.state.navRef} openDrawer={this.openDrawer} />
